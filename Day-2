@@ -18,3 +18,32 @@ public:
         return ans;
     }
 };
+
+Problem 724 Pivot number .
+class Solution {
+public:
+    int pivotIndex(vector<int>& arr) {
+        int n = arr.size();
+
+        vector<int> left(n, 0), right(n, 0);
+
+        // Calculate left prefix sums
+        for (int i = 1; i < n; i++) {
+            left[i] = left[i - 1] + arr[i - 1];
+        }
+
+        // Calculate right suffix sums
+        for (int i = n - 2; i >= 0; i--) {
+            right[i] = right[i + 1] + arr[i + 1];
+        }
+
+        // Find pivot index
+        for (int i = 0; i < n; i++) {
+            if (left[i] == right[i]) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+};
