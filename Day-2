@@ -19,7 +19,10 @@ public:
     }
 };
 
-Problem 724 Pivot number .
+Problem 724 Pivot number 
+Approach 1 
+T.c = O(n)
+S.c = O(n)
 class Solution {
 public:
     int pivotIndex(vector<int>& arr) {
@@ -47,3 +50,24 @@ public:
         return -1;
     }
 };
+
+Approach - 2 
+TC= O(n)
+SC=O(1)
+class Solution {
+public:
+    int pivotIndex(vector<int>& arr) {
+        int n = arr.size();
+        int total=0;
+        for(int i=0; i<n;i++){
+            total+=arr[i];
+        }
+        int leftSum=0;
+        for(int i=0;i<n;i++){
+            if(leftSum==total-leftSum-arr[i])
+            return i;
+            leftSum+=arr[i];
+        }
+        return -1;
+    }
+}
