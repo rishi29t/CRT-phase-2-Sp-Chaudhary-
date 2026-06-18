@@ -1,0 +1,20 @@
+Problem no : 2149 - Rearrange array element by sign 
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& arr) {
+        vector<int> ans(arr.size());
+        int p=0,n=1;
+        for(int i=0;i<arr.size();i++){
+            if(arr[i]<0){
+                ans[n]=arr[i];
+                n+=2;
+            }
+            else
+            {
+                ans[p]=arr[i];
+                p+=2;
+            }
+        }
+        return ans;
+    }
+};
