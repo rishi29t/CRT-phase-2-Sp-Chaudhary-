@@ -32,3 +32,25 @@ public:
         return avg;
     }
 };
+Problem 209 
+Approach 2 Sliding window  minimum  size sub array sum 
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& arr) {
+        int len=INT_MAX;
+        int sum=0;
+        int right=0, left=0;
+        while(right<arr.size()){
+            sum+=arr[right];
+            while(sum>=target){
+                len = min(len,right-left+1);
+                sum-=arr[left];
+                left++;
+            }
+            right++;
+        }
+        if(len==INT_MAX)
+        return 0;
+        return len;
+    }
+};
