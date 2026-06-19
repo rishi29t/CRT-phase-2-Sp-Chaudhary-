@@ -11,3 +11,24 @@ public:
         }
     }
 };
+
+Problem : 643 
+maximum avg of sub array 
+class Solution {
+public:
+    double findMaxAverage(vector<int>& arr, int k) {
+        int left =0 , right=0;
+        double sum=0;
+        double avg = INT_MIN;
+        while(right < arr.size()){
+            sum+=arr[right];
+            if(right-left+1 ==k){
+                avg=max(sum/k,avg);
+                sum-=arr[left];
+                left++;
+            }
+            right++;
+        }
+        return avg;
+    }
+};
