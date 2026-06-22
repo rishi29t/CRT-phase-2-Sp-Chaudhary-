@@ -131,3 +131,50 @@ public:
         return slow;
     }
 };
+LEETCODE : 148 
+COMBINING Of 3 leetcode problems - 
+class Solution {
+public:
+    // MERGE SORT lagaya 2 list ko join krne wla LC 21 
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if(list1 == nullptr)
+            return list2;
+        if(list2 == nullptr)
+            return list1;  
+        if(list1->val<=list2->val){
+            list1->next=mergeTwoLists(list1->next,list2);
+            return list1;
+        }  
+        else{
+            list2->next=mergeTwoLists(list1,list2->next);
+            return list2;
+        }
+        
+    }
+    // HARE and TORTOISE lc 206
+    ListNode* middleNode(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while (fast->next != nullptr && fast->next->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        return slow;
+    }
+    // Divide and conquer lc 912
+    ListNode *mergeSort(ListNode *head){
+        if(head==nullptr || head->next==nullptr)
+            return head;
+        ListNode *mid = middleNode(head);
+        ListNode *head2=mid->next;
+        mid->next= nullptr;
+        head = mergeSort(head);
+        head2= mergeSort(head2);
+        return mergeTwoLists(head,head2);
+    }
+public:
+    ListNode* sortList(ListNode * head){
+        return mergeSort(head);
+    }
+};
