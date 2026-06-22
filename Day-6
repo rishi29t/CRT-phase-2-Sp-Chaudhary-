@@ -102,3 +102,32 @@ public:
         return prev;
     }
 };
+Leet code: 876 
+Middle of linked list 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        // dono head starting posi p 
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        // fast will go from 2 and slow will go 1 by 1 
+        while (fast != nullptr && fast->next != nullptr) {
+            // Step 3: Move slow by 1 step, fast by 2 steps
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        return slow;
+    }
+};
