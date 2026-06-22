@@ -60,3 +60,45 @@ public:
     }
 };
 Tc = O(m+n)
+Leetcode- 206 
+reverse linked list . 
+Approach 1 Recursive 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+ // RECURSIVE APPROACH --- 
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(head == nullptr || head->next==nullptr)
+            return head ;
+        ListNode *newHead = reverseList(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        return newHead;
+    }
+};
+Approach 2 Normal 
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head ) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+
+        while( curr!= nullptr){
+            ListNode* next = curr->next;
+            curr->next = prev;
+            prev =curr;
+            curr= next;
+        }
+        
+        return prev;
+    }
+};
