@@ -36,3 +36,33 @@ public:
       return dummy1.next;
     }
 };
+Leetcode : 234 Palindrome linked list using stack 
+class Solution {
+    ListNode* midNode(ListNode* head){
+        ListNode *slow=head, *fast=head;
+        while(fast->next!=nullptr && fast->next->next!=nullptr){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+public:
+    bool isPalindrome(ListNode* head) {
+
+        ListNode *mid = midNode(head);
+        ListNode *ptr = mid->next;
+        mid->next=nullptr;
+        stack<int> stk;
+        while(ptr){
+            stk.push(ptr->val);
+            ptr=ptr->next;
+        }
+        while(!stk.empty()){
+            if(stk.top()!=head->val)
+                return false;
+            head=head->next;
+            stk.pop();
+        }
+        return true;
+    }
+};
