@@ -89,3 +89,25 @@ public:
       return count;
     }
 };
+Approach 3 
+class Solution {
+public:
+    int trap(vector<int>& height) {
+      int n=height.size();
+      vector<int> left(n,0);
+      //left max->
+      for(int i=1;i<n;i++){
+        left[i]=max(height[i-1],left[i-1]);
+      }  
+      //right max->
+      int count=0;
+      int right=height[n-1];
+      for(int i=n-2;i>=0;i--){
+        if(left[i]>height[i] && right>height[i]){
+            count+=min(left[i],right)-height[i];
+        }
+        right=max(height[i],right);
+      }
+      return count;
+    }
+};
