@@ -1,0 +1,45 @@
+class Solution {
+    ListNode* findMid(ListNode* head){
+        ListNode *slow = head, *fast = head;
+
+        while(fast->next && fast->next->next){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        return slow;
+    }
+
+public:
+    void reorderList(ListNode* head) {
+
+        if(head == nullptr || head->next == nullptr)
+            return;
+
+        ListNode *mid = findMid(head);
+
+        ListNode *ptr = mid->next;
+        mid->next = nullptr;
+
+        stack<ListNode*> st;
+
+        while(ptr){
+            st.push(ptr);
+            ptr = ptr->next;
+        }
+
+        ptr = head;
+
+        while(!st.empty()){
+            ListNode *temp = st.top();
+            st.pop();
+
+            temp->next = ptr->next;
+            ptr->next = temp;
+            ptr = temp->next;
+        }
+
+        if(ptr)
+            ptr->next = nullptr;
+    }
+};
