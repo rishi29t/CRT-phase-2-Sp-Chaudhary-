@@ -131,3 +131,42 @@ public:
      return ans;   
     }
 };
+Leet code : 144
+preorder traversal 
+class Solution {
+public:
+    void traversal(TreeNode* root, vector<int>& ans){
+    // Base condition 
+    if( root == nullptr){
+        return;
+    }
+    // Logical 
+    ans.push_back(root->val);
+    traversal(root->left,ans);
+    traversal(root->right,ans);
+    }
+    vector<int> preorderTraversal(TreeNode* root) {
+     vector<int>ans;
+     traversal(root,ans);
+     return ans;   
+    }
+};
+Leet code : 145 
+class Solution {
+public:
+    void traversal(TreeNode* root, vector<int>& ans){
+    // Base condition 
+    if( root == nullptr){
+        return;
+    }
+    // Logical 
+    traversal(root->left,ans);
+    traversal(root->right,ans);
+    ans.push_back(root->val);
+    }
+    vector<int> postorderTraversal(TreeNode* root) {
+     vector<int>ans;
+     traversal(root,ans);
+     return ans;   
+    }
+};
